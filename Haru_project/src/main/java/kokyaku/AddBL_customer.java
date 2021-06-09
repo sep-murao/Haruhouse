@@ -52,6 +52,8 @@ public class AddBL_customer extends HttpServlet {
 		String CUST_DEPARTMENT_NAME = request.getParameter("CUST_DEPARTMENT_NAME");
 		String CUST_L_NAME = request.getParameter("CUST_L_NAME");
 		String CUST_F_NAME = request.getParameter("CUST_F_NAME");
+		String CUST_L_NAME_KANA = request.getParameter("CUST_L_NAME_KANA");
+	    String CUST_F_NAME_KANA = request.getParameter("CUST_F_NAME_KANA");
 		String CUST_ZIP = request.getParameter("CUST_ZIP");
 		String CUST_PREFECTURE = request.getParameter("CUST_PREFECTURE");
 		String CUST_ADDRESS1 = request.getParameter("CUST_ADDRESS1");
@@ -66,7 +68,7 @@ public class AddBL_customer extends HttpServlet {
 		String[] CUST_MAIL_SEND_FLG = request.getParameterValues("CUST_MAIL_SEND_FLG");
 		//String CUST_MAIL_SEND_FLG = request.getParameter("CUST_MAIL_SEND_FLG");
 
-    	String errmsg = Cmmon_customer.getError(CUST_KIND , CORP_NAME, CORP_NAME_KANA, CUST_DEPARTMENT_NAME, CUST_L_NAME, CUST_F_NAME, CUST_ZIP, CUST_PREFECTURE, CUST_ADDRESS1, CUST_ADDRESS2,
+    	String errmsg = Cmmon_customer.getError(CUST_KIND , CORP_NAME, CORP_NAME_KANA, CUST_DEPARTMENT_NAME, CUST_L_NAME, CUST_F_NAME,CUST_L_NAME_KANA, CUST_F_NAME_KANA, CUST_ZIP, CUST_PREFECTURE, CUST_ADDRESS1, CUST_ADDRESS2,
     			                         CUST_TEL1, CUST_TEL2, CUST_TEL3, CUST_MOBILE1, CUST_MOBILE2, CUST_MOBILE3, CUST_MAIL);
 		String nextUrl = "/AddCheck_customer.jsp";
     	
@@ -80,6 +82,8 @@ public class AddBL_customer extends HttpServlet {
     	request.setAttribute("CUST_DEPARTMENT_NAME", CUST_DEPARTMENT_NAME);
     	request.setAttribute("CUST_L_NAME", CUST_L_NAME);
     	request.setAttribute("CUST_F_NAME", CUST_F_NAME);
+    	request.setAttribute("CUST_L_NAME_KANA", CUST_L_NAME_KANA);
+    	request.setAttribute("CUST_F_NAME_KANA", CUST_F_NAME_KANA);
     	request.setAttribute("CUST_ZIP", CUST_ZIP);
     	request.setAttribute("CUST_PREFECTURE", CUST_PREFECTURE);
     	request.setAttribute("CUST_ADDRESS1", CUST_ADDRESS1);

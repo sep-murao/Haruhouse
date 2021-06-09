@@ -7,8 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import java.sql.ResultSet;
-
 public class Cmmon_customer {
 	private static final String ResultSet = null;
 	
@@ -18,7 +16,7 @@ public class Cmmon_customer {
 	    static final String PASSWORD = "";  
 
 	 //エラーチェック
-	    public static String getError(String CUST_KIND ,String CORP_NAME,String CORP_NAME_KANA,String CUST_DEPARTMENT_NAME,String CUST_L_NAME,String CUST_F_NAME,String CUST_ZIP,String CUST_PREFECTURE,
+	    public static String getError(String CUST_KIND ,String CORP_NAME,String CORP_NAME_KANA,String CUST_DEPARTMENT_NAME,String CUST_L_NAME,String CUST_F_NAME,String CUST_L_NAME_KANA,String CUST_F_NAME_KANA,String CUST_ZIP,String CUST_PREFECTURE,
 	    		String CUST_ADDRESS1,String CUST_ADDRESS2,String CUST_TEL1,String CUST_TEL2,String CUST_TEL3,String CUST_MOBILE1,String CUST_MOBILE2,String CUST_MOBILE3,String CUST_MAIL) throws UnsupportedEncodingException {
 	    	String ERRMSG_KIND ="個人・法人区分は必須項目です";
 	    	String ERRMSG_CNAME ="法人名は必須項目です";
@@ -27,6 +25,10 @@ public class Cmmon_customer {
 	    	String ERRMSG_DEPARTMENT ="25文字以内で入力してください";
 	    	String ERRMSG_L_NAME ="10文字以内で入力してください";
 	    	String ERRMSG_F_NAME ="10文字以内で入力してください";
+	    	String ERRMSG_L_NAME_KANA ="10文字以内で入力してください";
+	    	String ERRMSG_F_NAME_KANA ="10文字以内で入力してください";
+	    	String ERRMSG_L_NAME_KANA2 ="全角カナで入力してください";
+	    	String ERRMSG_F_NAME_KANA2 ="全角カナで入力してください";
 	    	String ERRMSG_ZIP ="郵便番号は必須項目です";
 	    	String ERRMSG_PREFECTURE ="都道府県は必須項目です";
 	    	String ERRMSG_ADDRESS1 ="50文字以内で入力してください";
@@ -43,7 +45,10 @@ public class Cmmon_customer {
 	}if(!(CORP_NAME == "") && CORP_NAME_KANA == "") {
 		returnVal = returnVal + ERRMSG_CNAME_K+"<br>";
 	/*}if(ERRMSG_CNAME_K2 ) {*/
-		
+	}if(CUST_L_NAME_KANA.length()>10) {
+		returnVal = returnVal + ERRMSG_L_NAME_KANA+"<br>";
+	}if(CUST_F_NAME_KANA.length()>10) {
+		returnVal = returnVal + ERRMSG_F_NAME_KANA+"<br>";	
 	}if(CUST_DEPARTMENT_NAME.length()>25){
 		returnVal = returnVal + ERRMSG_DEPARTMENT+"<br>";
 	}if(CUST_L_NAME.length()>10) {

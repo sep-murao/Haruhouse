@@ -34,7 +34,7 @@ public class AddCommitBL_customer extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -72,12 +72,26 @@ public class AddCommitBL_customer extends HttpServlet {
 			 Class.forName("com.mysql.jdbc.Driver");
 				connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 				stmt = connect.prepareStatement(
-				"INSERT INTO `mst_customer`(`CUST_KIND`, `CUST_CORP_NAME`, `CUST_CORP_NAME_KANA`, `CUST_DEPARTMENT_NAME`, `CUST_L_NAME`, `CUST_F_NAME`, `CUST_L_NAME_KANA`, `CUST_F_NAME_KANA`, `CUST_ZIP`, `CUST_PREFECTURE`, `CUST_ADDRESS1`, `CUST_ADDRESS2`, `CUST_TEL1`, `CUST_TEL2`, `CUST_TEL3`, `CUST_MOBILE1`, `CUST_MOBILE2`, `CUST_MOBILE3`, `CUST_MAIL`, `CUST_MAIL_SEND_FLG`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]','[value-7]','[value-8]','[value-9]','[value-10]','[value-11]','[value-12]','[value-13]','[value-14]','[value-15]','[value-16]','[value-17]','[value-18]','[value-19]','[value-20]')");
+				"INSERT INTO mst_customer(CUST_KIND,CUST_CORP_NAME,CUST_CORP_NAME_KANA,CUST_DEPARTMENT_NAME,CUST_L_NAME,CUST_F_NAME,CUST_L_NAME_KANA,CUST_F_NAME_KANA,CUST_ZIP,CUST_PREFECTURE,CUST_ADDRESS1,CUST_ADDRESS2,CUST_TEL1,CUST_TEL2,CUST_TEL3,CUST_MOBILE1,CUST_MOBILE2,CUST_MOBILE3,CUST_MAIL) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
 			
-				stmt.setString(1, name);
-	   		    stmt.setString(2, address );
-	   		    stmt.setString(3, tel );
-			    stmt.setString(4, categoryid );
+				stmt.setString(1, CUST_KIND);
+	   		    stmt.setString(2, CORP_NAME);
+	   		    stmt.setString(3, CORP_NAME_KANA);
+			    stmt.setString(4, CUST_DEPARTMENT_NAME);
+			    stmt.setString(5, CUST_L_NAME);
+	   		    stmt.setString(6, CUST_F_NAME);
+	   		    stmt.setString(7, CUST_ZIP);
+			    stmt.setString(8, CUST_PREFECTURE);
+			    stmt.setString(9, CUST_ADDRESS1);
+	   		    stmt.setString(10, CUST_ADDRESS2);
+	   		    stmt.setString(11, CUST_TEL1);
+			    stmt.setString(12, CUST_TEL2);
+			    stmt.setString(13, CUST_TEL3);
+	   		    stmt.setString(14, CUST_MOBILE1);
+	   		    stmt.setString(15, CUST_MOBILE2);
+			    stmt.setString(16, CUST_MOBILE3);
+			    stmt.setString(17, CUST_MAIL);
+	   		    //stmt.setString(18, CUST_MAIL_SEND_FLG);
 			    
 			   int rs = stmt.executeUpdate();
 				 
@@ -85,7 +99,7 @@ public class AddCommitBL_customer extends HttpServlet {
 					e.printStackTrace();
 		}
 		
-			 request.getRequestDispatcher("/ListBL").forward(request, response); 
+			 request.getRequestDispatcher("/AddCnfirm_customer").forward(request, response); 
 	}
 
 }

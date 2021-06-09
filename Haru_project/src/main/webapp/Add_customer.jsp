@@ -127,6 +127,8 @@
    <tr><th>部署</th><td><input type="text" name="CUST_DEPARTMENT_NAME"value=<%=CUST_DEPARTMENT_NAME %>></td></tr>
    <tr><th>姓</th><td><input type="text" name="CUST_L_NAME" value=<%=CUST_L_NAME%>></td></tr>
    <tr><th>名</th><td><input type="text" name="CUST_F_NAME" value=<%=CUST_F_NAME%>></td></tr>
+   <tr><th>姓カナ</th><td><input type="text" name="CUST_L_NAME_KANA" value=<%=CUST_L_NAME_KANA%>></td></tr>
+   <tr><th>名カナ</th><td><input type="text" name="CUST_F_NAME_KANA" value=<%=CUST_F_NAME_KANA%>></td></tr>
    <tr><th>郵便番号</th><td><input type="text" name="CUST_ZIP" value=<%=CUST_ZIP%>></td></tr>
    <tr><th>都道府県</th><td><select name="CUST_PREFECTURE">
    <option ></option>

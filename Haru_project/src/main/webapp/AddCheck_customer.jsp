@@ -12,6 +12,8 @@
   String CUST_DEPARTMENT_NAME = (String)request.getAttribute("CUST_DEPARTMENT_NAME");
   String CUST_L_NAME = (String)request.getAttribute("CUST_L_NAME");
   String CUST_F_NAME = (String)request.getAttribute("CUST_F_NAME");
+  String CUST_L_NAME_KANA = (String)request.getAttribute("CUST_L_NAME_KANA");
+  String CUST_F_NAME_KANA = (String)request.getAttribute("CUST_F_NAME_KANA");
   String CUST_ZIP = (String)request.getAttribute("CUST_ZIP");
   String CUST_PREFECTURE = (String)request.getAttribute("CUST_PREFECTURE");
   String CUST_ADDRESS1 = (String)request.getAttribute("CUST_ADDRESS1");
@@ -50,6 +52,8 @@
    <tr><th>部署</th><td><%=CUST_DEPARTMENT_NAME %></td></tr>
    <tr><th>姓</th><td><%=CUST_L_NAME %></td></tr>
    <tr><th>名</th><td><%=CUST_F_NAME%></td></tr>
+   <tr><th>姓カナ</th><td><%=CUST_L_NAME_KANA %></td></tr>
+   <tr><th>名カナ</th><td><%=CUST_F_NAME_KANA%></td></tr>
    <tr><th>郵便番号</th><td><%=CUST_ZIP %></td></tr>
    <tr><th>都道府県</th><td><%=CUST_PREFECTUREname %></td></tr> 
    <tr><th>住所</th><td><%=CUST_ADDRESS1 %></td></tr>
@@ -68,6 +72,8 @@
 <input type="hidden" name="CUST_DEPARTMENT_NAME" value=<%=CUST_DEPARTMENT_NAME%>>
 <input type="hidden" name="CUST_L_NAME" value=<%=CUST_L_NAME %>>
 <input type="hidden" name="CUST_F_NAME" value=<%=CUST_F_NAME %>>
+<input type="hidden" name="CUST_L_NAME_KANA" value=<%=CUST_L_NAME_KANA %>>
+<input type="hidden" name="CUST_F_NAME_KANA" value=<%=CUST_F_NAME_KANA %>>
 <input type="hidden" name=CUST_ZIP value=<%=CUST_ZIP%>>
 <input type="hidden" name="CUST_PREFECTURE" value=<%=CUST_PREFECTURE%>>
 <input type="hidden" name="CUST_ADDRESS1" value=<%=CUST_ADDRESS1 %>>
@@ -92,6 +98,8 @@
 <input type="hidden" name="CUST_DEPARTMENT_NAME" value=<%=CUST_DEPARTMENT_NAME%>>
 <input type="hidden" name="CUST_L_NAME" value=<%=CUST_L_NAME %>>
 <input type="hidden" name="CUST_F_NAME" value=<%=CUST_F_NAME %>>
+<input type="hidden" name="CUST_L_NAME_KANA" value=<%=CUST_L_NAME_KANA %>>
+<input type="hidden" name="CUST_F_NAME_KANA" value=<%=CUST_F_NAME_KANA %>>
 <input type="hidden" name="CUST_ZIP" value=<%=CUST_ZIP%>>
 <input type="hidden" name="CUST_PREFECTURE" value=<%=CUST_PREFECTURE%>>
 <input type="hidden" name="CUST_ADDRESS1" value=<%=CUST_ADDRESS1 %>>
