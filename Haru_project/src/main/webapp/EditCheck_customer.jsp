@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="kokyaku.AddBL_customer"%>
+<%@page import="kokyaku.EditBL_customer"%>
 <%@page import= "kokyaku.Cmmon_customer"%>
 
 <%
   String CUST_OWNER = null;
 
+  String ID = (String)request.getAttribute("ID");
   String CUST_KIND = (String)request.getAttribute("CUST_KIND");
   String CORP_NAME = (String)request.getAttribute("CORP_NAME");
   String CORP_NAME_KANA = (String)request.getAttribute("CORP_NAME_KANA");
@@ -45,7 +46,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>顧客登録確認</title>
+<title>顧客変更確認</title>
 </head>
 <body>
 <table>
@@ -67,12 +68,13 @@
    <tr><th>退去立会終了後にメール送信</th><td><%=MAIL_MESSAGE%></td></tr>
    <tr><th><input type="checkbox" name="CUST_OWNER" value=<%=CUST_OWNER%>>同じ内容をオーナー情報にも登録する</th></tr>
 </table>
-<p>この情報で登録します。よろしいですか？</p>
-<form action="AddCommitBL_customer" method="Post">
+<p>この情報で変更します。よろしいですか？</p>
+<form action="EditCommitBL_customer" method="Post">
+<input type="hidden" name="ID" value=<%=ID %>>
 <input type="hidden" name="CUST_KIND" value=<%=CUST_KIND %>>
 <input type="hidden" name="CORP_NAME" value=<%=CORP_NAME%>>
 <input type="hidden" name="CORP_NAME_KANA" value=<%=CORP_NAME_KANA %>>
-<input type="hidden" name="CUST_DEPARTMENT_NAME" value=<%=CUST_DEPARTMENT_NAME%>>
+<input type="hidden" name="CUST_DEPARTMENT_NAME" value="<%=CUST_DEPARTMENT_NAME%>">
 <input type="hidden" name="CUST_L_NAME" value=<%=CUST_L_NAME %>>
 <input type="hidden" name="CUST_F_NAME" value=<%=CUST_F_NAME %>>
 <input type="hidden" name="CUST_L_NAME_KANA" value=<%=CUST_L_NAME_KANA %>>
@@ -91,10 +93,11 @@
 <input type="hidden" name="FLG_MESSAGE" value=<%=FLG_MESSAGE %>>
 <input type="hidden" name="CUST_OWNER" value=<%=CUST_OWNER %>>
 
-<input type="submit" value="登録" style="width:150px" id="button">
+<input type="submit" value="変更" style="width:150px" id="button">
 </form>
 
-<form method="POST" action="Add_customer.jsp" >
+<form method="POST" action="Edit_customer.jsp" >
+<input type="hidden" name="ID" value=<%=ID %>>
 <input type="hidden" name="CUST_KIND" value=<%=CUST_KIND %>>
 <input type="hidden" name="CORP_NAME" value=<%=CORP_NAME%>>
 <input type="hidden" name="CORP_NAME_KANA" value=<%=CORP_NAME_KANA %>>

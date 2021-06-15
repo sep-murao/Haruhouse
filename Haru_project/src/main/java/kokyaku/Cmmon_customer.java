@@ -81,7 +81,7 @@ public class Cmmon_customer {
 		public static ResultSet CUST_KINDAll(){
 		 Connection connect = null;
 		 Statement stmt = null;
-		 ResultSet rs =null;
+		 ResultSet rs1 =null;
 		 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -90,14 +90,14 @@ public class Cmmon_customer {
 			 
 			 String getQuery ="select CODE_BRANCH_NUM, CODE_NAME from mst_code where CODE_KIND = 1 and STATUS = 1";
 			
-			 rs = stmt.executeQuery(getQuery);
+			 rs1 = stmt.executeQuery(getQuery);
 			 
 		} catch(Exception e){
 			e.printStackTrace();
 		}
 		
 		 
-		return rs;
+		return rs1;
 	}
 	
 		//都道府県
@@ -123,6 +123,29 @@ public class Cmmon_customer {
 			return rs2;
 		}
 		
+		
+		//ステータス
+				public static ResultSet STATUSAll(){
+				 Connection connect = null;
+				 Statement stmt = null;
+				 ResultSet rs3 =null;
+				 
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
+					connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+					 stmt = connect.createStatement();
+					 
+					 String getQuery ="select CODE_BRANCH_NUM, CODE_NAME from mst_code where CODE_KIND = 2 and STATUS = 1";
+					
+					 rs3 = stmt.executeQuery(getQuery);
+					 
+				} catch(Exception e){
+					e.printStackTrace();
+				}
+				
+				 
+				return rs3;
+			}
 		
 		public static String getCUST_KINDname(String CUST_KIND) {
 			 Connection connect = null;

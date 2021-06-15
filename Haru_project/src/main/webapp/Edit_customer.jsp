@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="kokyaku.AddBL_customer"%>
+    
+<%@page import="kokyaku.EditBL_customer"%>
 <%@page import= "kokyaku.Cmmon_customer"%>
 <%@page import="java.sql.ResultSet"%>
-
-<%   String CUST_KIND =null;
+    
+<%   
+     String ID =null;
+     String CUST_KIND =null;
      String CORP_NAME =null;
      String CORP_NAME_KANA =null;
      String CUST_DEPARTMENT_NAME =null;
@@ -28,92 +31,66 @@
      ResultSet rs1 = Cmmon_customer.CUST_KINDAll();
      ResultSet rs2 = Cmmon_customer.CUST_PREFECTURAll();
      
+     
+     
      if( (String)request.getAttribute("CUST_L_NAME")== null){
-    	 
-    	 if(request.getParameter("CUST_L_NAME")== null){
-   
-    	  CUST_KIND ="";
-    	  CORP_NAME ="";
-    	  CORP_NAME_KANA ="";
-    	  CUST_DEPARTMENT_NAME ="";
-    	  CUST_L_NAME ="";
-    	  CUST_F_NAME ="";
-    	  CUST_L_NAME_KANA ="";
-    	  CUST_F_NAME_KANA ="";
-    	  CUST_ZIP ="";
-    	  CUST_PREFECTURE ="";
-    	  CUST_ADDRESS1 ="";
-    	  CUST_ADDRESS2 ="";
-    	  CUST_TEL1 ="";
-    	  CUST_TEL2 ="";
-    	  CUST_TEL3 ="";
-    	  CUST_MOBILE1 ="";
-    	  CUST_MOBILE2 ="";
-    	  CUST_MOBILE3 ="";
-    	  CUST_MAIL ="";
-    	  errmsg ="";
-    	     
-    	 //新規登録の選択肢
-    	 
-    	 }else{
-    	   CUST_KIND = request.getParameter("CUST_KIND");
-    	   CORP_NAME = request.getParameter("CORP_NAME");
-    	   CORP_NAME_KANA = request.getParameter("CORP_NAME_KANA");
-    	   CUST_DEPARTMENT_NAME = request.getParameter("CUST_DEPARTMENT_NAME");
-           CUST_L_NAME = request.getParameter("CUST_L_NAME");
-    	   CUST_F_NAME = request.getParameter("CUST_F_NAME");
-    	   CUST_L_NAME_KANA = request.getParameter("CUST_L_NAME_KANA");
-    	   CUST_F_NAME_KANA = request.getParameter("CUST_F_NAME_KANA");
-    	   CUST_ZIP = request.getParameter("CUST_ZIP");
-    	   CUST_PREFECTURE = request.getParameter("CUST_PREFECTURE");
-    	   CUST_ADDRESS1 = request.getParameter("CUST_ADDRESS1");
-    	   CUST_ADDRESS2 = request.getParameter("CUST_ADDRESS2");
-    	   CUST_TEL1 = request.getParameter("CUST_TEL1");
-    	   CUST_TEL2 = request.getParameter("CUST_TEL2");
-    	   CUST_TEL3 = request.getParameter("CUST_TEL3");
-    	   CUST_MOBILE1 = request.getParameter("CUST_MOBILE1");
-    	   CUST_MOBILE2 = request.getParameter("CUST_MOBILE2");
-    	   CUST_MOBILE3 = request.getParameter("CUST_MOBILE3");
-    	   CUST_MAIL = request.getParameter("CUST_MAIL");
-    	   errmsg ="";
-    	     	//確認画面から戻った時
-    	 }
-     }else{
-    	 CUST_KIND = (String)request.getAttribute("CUST_KIND");
-    	 CORP_NAME = (String)request.getAttribute("CORP_NAME");
-    	 CORP_NAME_KANA = (String)request.getAttribute("CORP_NAME_KANA");
-    	 CUST_DEPARTMENT_NAME = (String)request.getAttribute("CUST_DEPARTMENT_NAME");
-    	 CUST_L_NAME = (String)request.getAttribute("CUST_L_NAME");
-    	 CUST_F_NAME = (String)request.getAttribute("CUST_F_NAME");
-    	 CUST_L_NAME_KANA = (String)request.getAttribute("CUST_L_NAME_KANA");
-    	 CUST_F_NAME_KANA = (String)request.getAttribute("CUST_F_NAME_KANA");
-    	 CUST_ZIP = (String)request.getAttribute("CUST_ZIP");
-    	 CUST_PREFECTURE = (String)request.getAttribute("CUST_PREFECTURE");
-    	 CUST_ADDRESS1 = (String)request.getAttribute("CUST_ADDRESS1");
-    	 CUST_ADDRESS2 = (String)request.getAttribute("CUST_ADDRESS2");
-    	 CUST_TEL1 = (String)request.getAttribute("CUST_TEL1");
-    	 CUST_TEL2 = (String)request.getAttribute("CUST_TEL2");
-    	 CUST_TEL3 = (String)request.getAttribute("CUST_TEL3");
-    	 CUST_MOBILE1 = (String)request.getAttribute("CUST_MOBILE1");
-    	 CUST_MOBILE2 = (String)request.getAttribute("CUST_MOBILE2");
-    	 CUST_MOBILE3 = (String)request.getAttribute("CUST_MOBILE3");
-    	 CUST_MAIL = (String)request.getAttribute("CUST_MAIL");
-    	 errmsg = (String)request.getAttribute("errmsg");
-     	//エラーが出た時
-     }
+    	 ID = request.getParameter("ID");
+    	 CUST_KIND= request.getParameter("CUST_KIND");
+    	 CORP_NAME= request.getParameter("CORP_NAME");
+    	 CORP_NAME_KANA= request.getParameter("CORP_NAME_KANA");
+    	 CUST_DEPARTMENT_NAME= request.getParameter("CUST_DEPARTMENT_NAME");
+    	 CUST_L_NAME = request.getParameter("CUST_L_NAME");
+    	 CUST_F_NAME= request.getParameter("CUST_F_NAME");
+    	 CUST_L_NAME_KANA= request.getParameter("CUST_L_NAME_KANA");
+    	 CUST_F_NAME_KANA= request.getParameter("CUST_F_NAME_KANA");
+    	 CUST_ZIP= request.getParameter("CUST_ZIP");
+    	 CUST_PREFECTURE = request.getParameter("CUST_PREFECTURE");
+    	 CUST_ADDRESS1= request.getParameter("CUST_ADDRESS1");
+    	 CUST_ADDRESS2= request.getParameter("CUST_ADDRESS2");
+    	 CUST_TEL1= request.getParameter("CUST_TEL1");
+    	 CUST_TEL2= request.getParameter("CUST_TEL2");
+    	 CUST_TEL3 = request.getParameter("CUST_TEL3");
+    	 CUST_MOBILE1= request.getParameter("CUST_MOBILE1");
+    	 CUST_MOBILE2= request.getParameter("CUST_MOBILE2");
+    	 CUST_MOBILE3= request.getParameter("CUST_MOBILE3");
+    	 CUST_MAIL= request.getParameter("CUST_MAIL");
+      	 errmsg ="";
+      	
+      }else{
+    	   ID = (String)request.getAttribute("ID");
+    	   CUST_KIND = (String)request.getAttribute("CUST_KIND");
+    	   CORP_NAME = (String)request.getAttribute("CORP_NAME");
+    	   CORP_NAME_KANA = (String)request.getAttribute("CORP_NAME_KANA");
+    	   CUST_DEPARTMENT_NAME = (String)request.getAttribute("CUST_DEPARTMENT_NAME");
+    	   CUST_L_NAME = (String)request.getAttribute("CUST_L_NAME");
+    	   CUST_F_NAME = (String)request.getAttribute("CUST_F_NAME");
+    	   CUST_L_NAME_KANA = (String)request.getAttribute("CUST_L_NAME_KANA");
+    	   CUST_F_NAME_KANA = (String)request.getAttribute("CUST_F_NAME_KANA");
+    	   CUST_ZIP = (String)request.getAttribute("CUST_ZIP");
+    	   CUST_PREFECTURE = (String)request.getAttribute("CUST_PREFECTURE");
+    	   CUST_ADDRESS1 = (String)request.getAttribute("CUST_ADDRESS1");
+    	   CUST_ADDRESS2 = (String)request.getAttribute("CUST_ADDRESS2");
+    	   CUST_TEL1 = (String)request.getAttribute("CUST_TEL1");
+    	   CUST_TEL2 = (String)request.getAttribute("CUST_TEL2");
+    	   CUST_TEL3 = (String)request.getAttribute("CUST_TEL3");
+    	   CUST_MOBILE1 = (String)request.getAttribute("CUST_MOBILE1");
+    	   CUST_MOBILE2 = (String)request.getAttribute("CUST_MOBILE2");
+    	   CUST_MOBILE3 = (String)request.getAttribute("CUST_MOBILE3");
+    	   CUST_MAIL = (String)request.getAttribute("CUST_MAIL");
+    	   errmsg= (String)request.getAttribute("errmsg");
+         }
      
      %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>顧客登録入力</title>
+<title>顧客変更入力</title>
 </head>
 <body>
-<form action="AddBL_customer" method="Post">
+<form action="EditBL_customer" method="Post">
+<input type="hidden" name="ID" value=<%= ID %>>
 <table>
-   
-
    <tr><th>個人・法人区分 </th><td><select name="CUST_KIND">
 	<option ></option>
 	<%while(rs1.next()) {
