@@ -91,7 +91,7 @@
 <form action="EditBL_customer" method="Post">
 <input type="hidden" name="ID" value=<%= ID %>>
 <table>
-   <tr><th>個人・法人区分 </th><td><select name="CUST_KIND">
+   <tr><th align="left">個人・法人区分 </th><td><select name="CUST_KIND">
 	<option ></option>
 	<%while(rs1.next()) {
 	%>
@@ -99,15 +99,15 @@
 	<%}%>
    </select></td></tr>
 
-   <tr><th>法人名</th><td><input type="text" name="CORP_NAME" value=<%=CORP_NAME%>></td></tr>
-   <tr><th>法人名カナ</th><td><input type="text" name="CORP_NAME_KANA" value=<%=CORP_NAME_KANA%>></td></tr>
-   <tr><th>部署</th><td><input type="text" name="CUST_DEPARTMENT_NAME"value=<%=CUST_DEPARTMENT_NAME %>></td></tr>
-   <tr><th>姓</th><td><input type="text" name="CUST_L_NAME" value=<%=CUST_L_NAME%>></td></tr>
-   <tr><th>名</th><td><input type="text" name="CUST_F_NAME" value=<%=CUST_F_NAME%>></td></tr>
-   <tr><th>姓カナ</th><td><input type="text" name="CUST_L_NAME_KANA" value=<%=CUST_L_NAME_KANA%>></td></tr>
-   <tr><th>名カナ</th><td><input type="text" name="CUST_F_NAME_KANA" value=<%=CUST_F_NAME_KANA%>></td></tr>
-   <tr><th>郵便番号</th><td><input type="text" name="CUST_ZIP" value=<%=CUST_ZIP%>></td></tr>
-   <tr><th>都道府県</th><td><select name="CUST_PREFECTURE">
+   <tr><th align="left">法人名</th><td><input type="text" name="CORP_NAME" style=width:300px value=<%=CORP_NAME%>></td></tr>
+   <tr><th align="left">法人名カナ</th><td><input type="text" name="CORP_NAME_KANA" style=width:300px value=<%=CORP_NAME_KANA%>></td></tr>
+   <tr><th align="left">部署</th><td><input type="text" name="CUST_DEPARTMENT_NAME" style=width:300px value=<%=CUST_DEPARTMENT_NAME %>></td></tr>
+   <tr><th align="left">姓</th><td><input type="text" name="CUST_L_NAME" style=width:300px value=<%=CUST_L_NAME%>></td></tr>
+   <tr><th align="left">名</th><td><input type="text" name="CUST_F_NAME" style=width:300px value=<%=CUST_F_NAME%>></td></tr>
+   <tr><th align="left">姓カナ</th><td><input type="text" name="CUST_L_NAME_KANA" style=width:300px value=<%=CUST_L_NAME_KANA%>></td></tr>
+   <tr><th align="left">名カナ</th><td><input type="text" name="CUST_F_NAME_KANA" style=width:300px value=<%=CUST_F_NAME_KANA%>></td></tr>
+   <tr><th align="left">郵便番号</th><td><input type="text" name="CUST_ZIP" style=width:300px value=<%=CUST_ZIP%>></td></tr>
+   <tr><th align="left">都道府県</th><td><select name="CUST_PREFECTURE">
    <option ></option>
    <%while(rs2.next()) {
    %>
@@ -115,15 +115,15 @@
    <%}%>
    </select></td></tr>
    
-   <tr><th>住所</th><td><input type="text" name="CUST_ADDRESS1" value=<%=CUST_ADDRESS1%>></td></tr>
-   <tr><th>建物名</th><td><input type="text" name="CUST_ADDRESS2" value=<%=CUST_ADDRESS2%>></td></tr>
-   <tr><th>電話番号</th><td><input type="text" name="CUST_TEL1" value=<%=CUST_TEL1%>>-
-   		   <input type="text" name="CUST_TEL2" value=<%=CUST_TEL2%>>-
-   		   <input type="text" name="CUST_TEL3" value=<%=CUST_TEL3%>></td></tr>
-   <tr><th>携帯番号</th><td><input type="text" name="CUST_MOBILE1" value=<%=CUST_MOBILE1%>>-
-           <input type="text" name="CUST_MOBILE2" value=<%=CUST_MOBILE2%>>-
-           <input type="text" name="CUST_MOBILE3" value=<%=CUST_MOBILE3%>></td></tr>
-   <tr><th>メールアドレス</th><td><input type="text" name="CUST_MAIL" value=<%=CUST_MAIL%>></td></tr>
+   <tr><th align="left">住所</th><td><input type="text" name="CUST_ADDRESS1" style=width:300px value=<%=CUST_ADDRESS1%>></td></tr>
+   <tr><th align="left">建物名</th><td><input type="text" name="CUST_ADDRESS2" style=width:300px value=<%=CUST_ADDRESS2%>></td></tr>
+   <tr><th align="left">電話番号</th><td><input type="text" name="CUST_TEL1" style=width:50px value=<%=CUST_TEL1%>>-
+   		   <input type="text" name="CUST_TEL2" style=width:50px value=<%=CUST_TEL2%>>-
+   		   <input type="text" name="CUST_TEL3" style=width:50px value=<%=CUST_TEL3%>></td></tr>
+   <tr><th align="left">携帯番号</th><td><input type="text" name="CUST_MOBILE1" style=width:50px value=<%=CUST_MOBILE1%>>-
+           <input type="text" name="CUST_MOBILE2" style=width:50px value=<%=CUST_MOBILE2%>>-
+           <input type="text" name="CUST_MOBILE3" style=width:50px value=<%=CUST_MOBILE3%>></td></tr>
+   <tr><th align="left">メールアドレス</th><td><input type="text" name="CUST_MAIL" style=width:300px value=<%=CUST_MAIL%>></td></tr>
    <tr><th><input type="checkbox" name="CUST_MAIL_SEND_FLG"checked>退去立会終了後にメール送信</th></tr>
 </table>
 <input type="submit" value="確認">

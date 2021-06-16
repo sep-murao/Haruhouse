@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.send_mail{
+	position: center;
+}
+
+li{
+	display: inline-block;
+}
