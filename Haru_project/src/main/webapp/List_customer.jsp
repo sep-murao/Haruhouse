@@ -6,6 +6,7 @@
 <%ResultSet rs = null;
   int listCnt = 0;
   String nowPage = null;
+  String updFlg = "0";
   int maxPage = 0;
   
   Statement stmt = null;
@@ -13,6 +14,7 @@
   
   nowPage = (String)request.getAttribute("Page");
   listCnt = (int)request.getAttribute("listCnt");
+  updFlg = (String)request.getAttribute("updflg");
   
   rs = (ResultSet)request.getAttribute("Result");
   
@@ -52,13 +54,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta name="Description" content="" />
+<meta name="Keywords" content="" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
 <link rel="stylesheet" href="List_customer.css">
 <title>顧客管理</title>
 </head>
 <body>
 <!--検索機能 -->
-<form action="ListBL_customer" method="Get">
+<form action="ListBL_customer" method="Post">
+<input type="hidden" name="flg" value=1>
+
 <table class="S_table">
 	<tr>
 		<td>個人・法人区分</td><td><select name="SearchCUST_KIND"><option ></option>
@@ -184,6 +195,7 @@
 	<%} %>
 </ul>
 
+
 <table class="L_table" border="2" style="border-collapse: collapse">
 	<tr>
 		<th> </th>
@@ -251,6 +263,7 @@
 	 </form>
 	 
 	 <form action="ListBL_customer" method="POST">
+	 <input type="hidden" name="flg" value=2>
 	 <input type="hidden" name="ID" value=<%=ID %>>
 		<td><select name="STATUS"><option ></option>
 		   <%rs3.beforeFirst(); %>
@@ -266,6 +279,7 @@
 		  </select>
 		   <p><input type="submit" value="実行"id=""></p>
 		</td>
+		<!-- hiddenでnowpage追加 -->
 	 </form>
 	 
 		<td><%=CUST_L_NAME %> <%=CUST_F_NAME %>
@@ -280,6 +294,10 @@
 		<%}%>
  </table>
  
- 
+ <%if(updFlg == "1"){%>
+ <script>
+ alert("ステータス更新が完了しました。");
+ </script>
+ <% }%>
 </body>
 </html>

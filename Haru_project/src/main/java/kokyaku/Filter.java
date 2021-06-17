@@ -1,7 +1,6 @@
 package kokyaku;
 
 import java.io.IOException;
-
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -41,7 +40,7 @@ public class Filter implements javax.servlet.Filter {
 		// TODO Auto-generated method stub
 		// place your code here
 		
-	    // 受信データと送信データの文字コードを指定して
+		// 受信データと送信データの文字コードを指定して
 	    request.setCharacterEncoding("UTF-8");
 	    response.setContentType("text/html; charset=UTF-8");
 	    // ここでそれらを繋げる

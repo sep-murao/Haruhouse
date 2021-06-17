@@ -84,6 +84,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="AddEdit_customer.css">
 <meta charset="UTF-8">
 <title>顧客変更入力</title>
 </head>

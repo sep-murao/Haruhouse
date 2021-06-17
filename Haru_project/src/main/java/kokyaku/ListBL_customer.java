@@ -22,7 +22,7 @@ public class ListBL_customer extends HttpServlet {
     static final String URL = "jdbc:mysql://localhost/harudb?useUnicode=true&characterEncoding=utf8";
     static final String USERNAME = "root";
     static final String PASSWORD = "";  
-
+    private String updFlg = "0";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -36,14 +36,33 @@ public class ListBL_customer extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		Connection connect = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		
 		String nowPage;
 		int limitSta;
-		int listCnt = 0;
+		
+		if(request.getParameter("flg") == null) {
+			//if( (String)request.getParameter("Page")== null){
+			if( request.getParameter("Page")== null){
+				nowPage = "1";
+			}else {
+				nowPage = request.getParameter("Page");
+			}
+			
+			int nowPage2 = Integer.parseInt(nowPage);
+			limitSta = (nowPage2 - 1)*10;
+
+			initProc(request,response,nowPage,limitSta);
+
+			request.getRequestDispatcher("/List_customer.jsp").forward(request, response);
+}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String nowPage = null;
+		int limitSta = 0;
 		
 		if( (String)request.getParameter("Page")== null){
 			nowPage = "1";
@@ -54,7 +73,64 @@ public class ListBL_customer extends HttpServlet {
 		int nowPage2 = Integer.parseInt(nowPage);
 		limitSta = (nowPage2 - 1)*10;
 		
-		request.setCharacterEncoding("UTF-8");
+		String STATUS = request.getParameter("STATUS");
+		String ID = request.getParameter("ID");
+		
+		Connection connect = null;
+		PreparedStatement stmt = null;
+		
+		 try {
+ 			 Class.forName("com.mysql.jdbc.Driver");
+				connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+				stmt = connect.prepareStatement(
+				"UPDATE mst_customer SET STATUS = ? where id= ? ;");
+			
+				stmt.setString(1, STATUS);
+				stmt.setString(2, ID);
+
+			   int rs = stmt.executeUpdate();
+				 
+			 } catch(Exception e){
+					e.printStackTrace();
+		}
+		 updFlg = "1";
+		 
+		initProc(request,response,nowPage,limitSta);
+		 
+		 request.getRequestDispatcher("/List_customer.jsp").forward(request, response);
+	}
+
+	protected  ResultSet getList(String pQuery, int limitVal) {
+		Connection connect = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			
+			String MainQuery = "select*from mst_customer where 1=1";
+			
+			 
+			pQuery += " limit ?,10; ";
+			ps = connect.prepareStatement(MainQuery + pQuery);
+			ps.setInt(1, limitVal);
+			rs = ps.executeQuery();
+		
+		 }catch(Exception e){
+				e.printStackTrace();
+		 }
+		return rs;
+		
+		
+	}
+	protected  String initProc(HttpServletRequest request, HttpServletResponse response, String nowPage, int limitSta) {
+		// TODO Auto-generated method stub
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		Connection connect = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int listCnt = 0;
 		
 		//全件取得
 		try {
@@ -112,12 +188,12 @@ public class ListBL_customer extends HttpServlet {
 		//住所
 		 if((String)request.getParameter("SearchCUST_ADDRESS1")== "" || request.getParameter("SearchCUST_ADDRESS1") == null) {
 		 }else{
-				SelectQuery += " and CUST_ADDRESS1 = " + request.getParameter("SearchCUST_ADDRESS1");
+				SelectQuery += " and CUST_ADDRESS1 like '%" + request.getParameter("SearchCUST_ADDRESS1") + "%'";
 		 }
 		//建物名
 		 if((String)request.getParameter("SearchCUST_ADDRESS2")== "" || request.getParameter("SearchCUST_ADDRESS2") == null) {
 		 }else{
-				SelectQuery += " and CUST_ADDRESS2 = " + request.getParameter("SearchCUST_ADDRESS2");
+				SelectQuery += " and CUST_ADDRESS2 like '%" + request.getParameter("SearchCUST_ADDRESS2") + "%'";
 		 }
 		//電話番号
 		 if((String)request.getParameter("SearchCUST_TEL")== "" || request.getParameter("SearchCUST_TEL") == null) {
@@ -132,7 +208,7 @@ public class ListBL_customer extends HttpServlet {
 		//メールアドレス
 		 if((String)request.getParameter("SearchCUST_MAIL")== "" || request.getParameter("SearchCUST_MAIL") == null) {
 		 }else{
-				SelectQuery += " and CUST_MAIL = " + request.getParameter("SearchCUST_MAIL");
+				SelectQuery += " and CUST_MAIL like '%" + request.getParameter("SearchCUST_MAIL") + "%'";
 		 }
 		//ステータス
 		 if((String)request.getParameter("SearchSTATUS")== "" || request.getParameter("SearchSTATUS") == null) {
@@ -142,69 +218,24 @@ public class ListBL_customer extends HttpServlet {
 		
 		 rs = this.getList(SelectQuery, limitSta);
 		
+		 request.setAttribute("updflg", updFlg);
 		 request.setAttribute("listCnt", listCnt);
 		 request.setAttribute("Result", rs);
 		 request.setAttribute("Page", nowPage);
 		 
+		 updFlg = "0";
 		 
-		 request.getRequestDispatcher("/List_customer.jsp").forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-		
-		String STATUS = request.getParameter("STATUS");
-		String ID = request.getParameter("ID");
-		
-		Connection connect = null;
-		PreparedStatement stmt = null;
-		
 		 try {
- 			 Class.forName("com.mysql.jdbc.Driver");
-				connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-				stmt = connect.prepareStatement(
-				"UPDATE mst_customer SET STATUS = ? where id= ? ;");
-			
-				stmt.setString(1, STATUS);
-				stmt.setString(2, ID);
-
-			   int rs = stmt.executeUpdate();
-				 
-			 } catch(Exception e){
-					e.printStackTrace();
+			request.getRequestDispatcher("/List_customer.jsp").forward(request, response);
+		} catch (ServletException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
 		}
-		 ResultSet rs = this.getList("", 1);
-		 
-		 request.setAttribute("Result", rs);
-		 request.getRequestDispatcher("/List_customer.jsp").forward(request, response);
+		 return SelectQuery;
 	}
 
-	protected  ResultSet getList(String pQuery, int limitVal) {
-		Connection connect = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			
-			String MainQuery = "select*from mst_customer where 1=1";
-			
-			 
-			pQuery += " limit ?,10; ";
-			ps = connect.prepareStatement(MainQuery + pQuery);
-			ps.setInt(1, limitVal);
-			rs = ps.executeQuery();
-		
-		 }catch(Exception e){
-				e.printStackTrace();
-		 }
-		return rs;
-		
-	}
 
 }
