@@ -12,15 +12,15 @@
   Statement stmt = null;
   Connection con = null;
   
-  nowPage = (String)request.getAttribute("Page");
+  nowPage = (String)request.getAttribute("nowPage");
   listCnt = (int)request.getAttribute("listCnt");
   updFlg = (String)request.getAttribute("updflg");
   
   rs = (ResultSet)request.getAttribute("Result");
   
-  ResultSet rs1 = Cmmon_customer.CUST_KINDAll();
-  ResultSet rs2 = Cmmon_customer.CUST_PREFECTURAll();
-  ResultSet rs3 = Cmmon_customer.STATUSAll();
+  ResultSet rs1 = Cmmon_customer.CUST_KINDAll();          //個人・法人プルダウン
+  ResultSet rs2 = Cmmon_customer.CUST_PREFECTURAll();    //都道府県プルダウン
+  ResultSet rs3 = Cmmon_customer.STATUSAll();           //ステータスプルダウン
    
   //maxPageに余りがあった時
   maxPage = listCnt / 10;
@@ -70,6 +70,7 @@
 <form action="ListBL_customer" method="Post">
 <input type="hidden" name="flg" value=1>
 
+<!--検索項目テーブル -->
 <table class="S_table">
 	<tr>
 		<td>個人・法人区分</td><td><select name="SearchCUST_KIND"><option ></option>
@@ -127,12 +128,12 @@
 
 <%int now = Integer.parseInt(nowPage); %>
 		
-		<!-- Page=1 の時文字列にする -->
+		<!-- nowPage=1 の時文字列にする -->
 	<%if(now == 1){ %>
 	<li> 前へ</li>
 	
 	<%}else{ %>
-	<li> <a href= "ListBL_customer?Page=<%=now - 1 %>" > 前へ</a> </li>
+	<li> <a href= "ListBL_customer?nowPage=<%=now - 1 %>" > 前へ</a> </li>
 	<%} %>
 	
 
@@ -147,7 +148,7 @@
 			    	<li> [<%=i %>]</li>
 			    	
 			    	<% }else{%>
-			        <li> <a href= "ListBL_customer?Page=<%=i %>" ><%=i%></a> </li>
+			        <li> <a href= "ListBL_customer?nowPage=<%=i %>" ><%=i%></a> </li>
 				<% }
 		    	}
 	 }%>
@@ -162,7 +163,7 @@
 		    	<li>[ <%=i %>]</li>
 		    	
 			    	<% }else{%>
-			        <li> <a href= "ListBL_customer?Page=<%=i %>" ><%=i%></a> </li>
+			        <li> <a href= "ListBL_customer?nowPage=<%=i %>" ><%=i%></a> </li>
 				<% }
 	    	}
 	
@@ -179,23 +180,23 @@
 		    	<li> [<%=i %>]</li>
 		    	
 			    	<% }else{%>
-			        <li> <a href= "ListBL_customer?Page=<%=i %>" ><%=i%></a> </li>
+			        <li> <a href= "ListBL_customer?nowPage=<%=i %>" ><%=i%></a> </li>
 				<% }
 	    	}
 	
 	    }
 	} %>
 	
-		<!-- Page=maxPage の時文字列にする -->
+		<!-- nowPage=maxPage の時文字列にする -->
 	<%if(now == maxPage){%>
 	<li> 次へ</li>
 	
 	<%}else{ %>
-	<li> <a href= "ListBL_customer?Page=<%=now + 1 %>" > 次へ </a> </li>
+	<li> <a href= "ListBL_customer?nowPage=<%=now + 1 %>" > 次へ </a> </li>
 	<%} %>
 </ul>
 
-
+<!-- 一覧表示 -->
 <table class="L_table" border="2" style="border-collapse: collapse">
 	<tr>
 		<th> </th>
@@ -237,6 +238,7 @@
 	  
 	%>
 	<tr>
+	<!-- 変更画面へ送るデータ -->
 	 <form method="GET" name="form_<%=ID %>">
 		<input type="hidden" name="ID" value=<%=ID %>>
 		<input type="hidden" name="CUST_KIND" value=<%=CUST_KIND %>>
@@ -262,9 +264,11 @@
 		<td><input type="submit" value="変更" formaction="Edit_customer.jsp"></td>
 	 </form>
 	 
+	 <!-- ステータス更新 -->
 	 <form action="ListBL_customer" method="POST">
 	 <input type="hidden" name="flg" value=2>
 	 <input type="hidden" name="ID" value=<%=ID %>>
+	 <input type="hidden" name="nowPage" value=<%=nowPage %>>
 		<td><select name="STATUS"><option ></option>
 		   <%rs3.beforeFirst(); %>
 		   	<%while(rs3.next()){%>
@@ -282,6 +286,7 @@
 		<!-- hiddenでnowpage追加 -->
 	 </form>
 	 
+	 <!-- DB情報表示 -->
 		<td><%=CUST_L_NAME %> <%=CUST_F_NAME %>
 		 <p><%=CUST_L_NAME_KANA %> <%=CUST_F_NAME_KANA %></p></td>
 		<td><%=CORP_NAME%><p><%=CORP_NAME_KANA %></p></td>

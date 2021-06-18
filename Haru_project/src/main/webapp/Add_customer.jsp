@@ -112,9 +112,8 @@
 </head>
 <body>
 <form action="AddBL_customer" method="Post">
+<!-- 登録項目 -->
 <table>
-   
-
    <tr><th align="left">個人・法人区分 </th><td><select name="CUST_KIND">
 	<option ></option>
 	<%while(rs1.next()) {

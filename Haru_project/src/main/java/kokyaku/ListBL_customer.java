@@ -40,17 +40,16 @@ public class ListBL_customer extends HttpServlet {
 		int limitSta;
 		
 		if(request.getParameter("flg") == null) {
-			//if( (String)request.getParameter("Page")== null){
-			if( request.getParameter("Page")== null){
+			if( request.getParameter("nowPage")== null){
 				nowPage = "1";
 			}else {
-				nowPage = request.getParameter("Page");
+				nowPage = request.getParameter("nowPage");
 			}
 			
 			int nowPage2 = Integer.parseInt(nowPage);
 			limitSta = (nowPage2 - 1)*10;
 
-			initProc(request,response,nowPage,limitSta);
+			initProc(request,response,nowPage,limitSta);   //126行目
 
 			request.getRequestDispatcher("/List_customer.jsp").forward(request, response);
 }
@@ -64,14 +63,16 @@ public class ListBL_customer extends HttpServlet {
 		String nowPage = null;
 		int limitSta = 0;
 		
-		if( (String)request.getParameter("Page")== null){
+		if( (String)request.getParameter("nowPage")== null){
 			nowPage = "1";
 		}else {
-			nowPage = request.getParameter("Page");
+			nowPage = request.getParameter("nowPage");
 		}
 		
 		int nowPage2 = Integer.parseInt(nowPage);
 		limitSta = (nowPage2 - 1)*10;
+		
+		
 		
 		String STATUS = request.getParameter("STATUS");
 		String ID = request.getParameter("ID");
@@ -79,6 +80,7 @@ public class ListBL_customer extends HttpServlet {
 		Connection connect = null;
 		PreparedStatement stmt = null;
 		
+		      //ステータス更新
 		 try {
  			 Class.forName("com.mysql.jdbc.Driver");
 				connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -221,7 +223,7 @@ public class ListBL_customer extends HttpServlet {
 		 request.setAttribute("updflg", updFlg);
 		 request.setAttribute("listCnt", listCnt);
 		 request.setAttribute("Result", rs);
-		 request.setAttribute("Page", nowPage);
+		 request.setAttribute("nowPage", nowPage);
 		 
 		 updFlg = "0";
 		 
