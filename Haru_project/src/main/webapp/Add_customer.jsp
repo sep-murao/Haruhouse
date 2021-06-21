@@ -156,8 +156,8 @@
            <input type="text" name="CUST_MOBILE2" style=width:50px value=<%=CUST_MOBILE2%>>-
            <input type="text" name="CUST_MOBILE3" style=width:50px value=<%=CUST_MOBILE3%>></td></tr>
    <tr><th align="left">メールアドレス</th><td><input type="text" name="CUST_MAIL" style=width:300px value=<%=CUST_MAIL%>></td></tr>
-   <tr><th class="send_mail"><input type="checkbox" name="CUST_MAIL_SEND_FLG"checked>退去立会終了後にメール送信</th></tr>
 </table>
+<p><div class="send_mail"><input type="checkbox" name="CUST_MAIL_SEND_FLG"checked>退去立会終了後にメール送信</div></p>
 
 <div class="Next">
 <input type="submit" value="確認" >

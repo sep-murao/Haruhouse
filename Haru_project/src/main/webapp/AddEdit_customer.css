@@ -1,11 +1,7 @@
 @charset "UTF-8";
 
-th.send_mail{
+.send_mail{
 	padding-left:200px;
-}
-
-.Next{
-	margin-left:200px;
 }
 
 p{
