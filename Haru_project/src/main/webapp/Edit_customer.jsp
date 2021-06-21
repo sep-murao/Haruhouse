@@ -84,6 +84,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta name="Description" content="" />
+<meta name="Keywords" content="" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+
 <link rel="stylesheet" href="AddEdit_customer.css">
 <meta charset="UTF-8">
 <title>顧客変更入力</title>
@@ -94,10 +103,12 @@
 <table>
    <tr><th align="left">個人・法人区分 </th><td><select name="CUST_KIND">
 	<option ></option>
-	<%while(rs1.next()) {
-	%>
+	<%while(rs1.next()) {%>
+	<%if( rs1.getString("CODE_BRANCH_NUM").equals(CUST_KIND) ){ %>
+	   <option value=<%=rs1.getString("CODE_BRANCH_NUM") %> selected><%=rs1.getString("CODE_NAME") %></option>
+	<%}else{ %>
 	   <option value=<%=rs1.getString("CODE_BRANCH_NUM") %>><%=rs1.getString("CODE_NAME") %></option>
-	<%}%>
+	   <%}} %>
    </select></td></tr>
 
    <tr><th align="left">法人名</th><td><input type="text" name="CORP_NAME" style=width:300px value=<%=CORP_NAME%>></td></tr>
@@ -110,10 +121,12 @@
    <tr><th align="left">郵便番号</th><td><input type="text" name="CUST_ZIP" style=width:300px value=<%=CUST_ZIP%>></td></tr>
    <tr><th align="left">都道府県</th><td><select name="CUST_PREFECTURE">
    <option ></option>
-   <%while(rs2.next()) {
-   %>
-   <option value=<%=rs2.getString("CODE_BRANCH_NUM") %>><%=rs2.getString("CODE_NAME") %></option>
-   <%}%>
+   <%while(rs2.next()) {%>
+   <%if( rs2.getString("CODE_BRANCH_NUM").equals(CUST_PREFECTURE) ){ %>
+	   <option value=<%=rs2.getString("CODE_BRANCH_NUM") %> selected><%=rs2.getString("CODE_NAME") %></option>
+	<%}else{ %>
+	   <option value=<%=rs2.getString("CODE_BRANCH_NUM") %>><%=rs2.getString("CODE_NAME") %></option>
+	   <%}} %>
    </select></td></tr>
    
    <tr><th align="left">住所</th><td><input type="text" name="CUST_ADDRESS1" style=width:300px value=<%=CUST_ADDRESS1%>></td></tr>
@@ -129,9 +142,12 @@
 </table>
 <input type="submit" value="確認">
 </form>
+
 <form method="POST" action="ListBL_customer" >
+<input type="hidden" name="flg" value=1>
 <input type="submit" value="一覧へ戻る"> 
 </form>
+
 <p><%=errmsg %></p>
 </body>
 </html>

@@ -14,7 +14,7 @@
   
   nowPage = (String)request.getAttribute("nowPage");
   listCnt = (int)request.getAttribute("listCnt");
-  updFlg = (String)request.getAttribute("updflg");
+  updFlg = (String)request.getAttribute("updFlg");
   
   rs = (ResultSet)request.getAttribute("Result");
   
@@ -114,6 +114,7 @@
 </table>
 </div>
 
+<input type="hidden" name="updFlg" value=0>
 <input type="submit" value="検索"id="search">
 <input type="submit" value="リセット"id="search">
 </form>
@@ -269,6 +270,7 @@
 	 <input type="hidden" name="flg" value=2>
 	 <input type="hidden" name="ID" value=<%=ID %>>
 	 <input type="hidden" name="nowPage" value=<%=nowPage %>>
+	 <input type="hidden" name="updFlg" value=1>
 		<td><select name="STATUS"><option ></option>
 		   <%rs3.beforeFirst(); %>
 		   	<%while(rs3.next()){%>
@@ -299,7 +301,7 @@
 		<%}%>
  </table>
  
- <%if(updFlg == "1"){%>
+ <%if(updFlg.equals("1")){%>
  <script>
  alert("ステータス更新が完了しました。");
  </script>

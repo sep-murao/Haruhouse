@@ -106,6 +106,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta name="Description" content="" />
+<meta name="Keywords" content="" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+
 <meta charset="UTF-8">
 <link rel="stylesheet" href="AddEdit_customer.css">
 <title>顧客登録入力</title>
@@ -150,15 +159,17 @@
    <tr><th class="send_mail"><input type="checkbox" name="CUST_MAIL_SEND_FLG"checked>退去立会終了後にメール送信</th></tr>
 </table>
 
-<ul>
-	<li><input type="submit" value="確認">
-	</form>
-	</li>
-	<li><form method="POST" action="ListBL_customer" >
-	<input type="submit" value="一覧へ戻る"> 
-	</li>
+<div class="Next">
+<input type="submit" value="確認" >
 </form>
-</ul>
+
+<form method="POST" action="ListBL_customer" >
+<input type="hidden" name="flg" value=1>
+<input type="submit" value="一覧へ戻る">
+</form>
+</div>
+
 <p><%=errmsg %></p>
+
 </body>
 </html>

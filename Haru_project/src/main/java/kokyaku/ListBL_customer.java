@@ -63,6 +63,8 @@ public class ListBL_customer extends HttpServlet {
 		String nowPage = null;
 		int limitSta = 0;
 		
+		updFlg = request.getParameter("updFlg");
+		
 		if( (String)request.getParameter("nowPage")== null){
 			nowPage = "1";
 		}else {
@@ -95,7 +97,7 @@ public class ListBL_customer extends HttpServlet {
 			 } catch(Exception e){
 					e.printStackTrace();
 		}
-		 updFlg = "1";
+		 //updFlg = "1";
 		 
 		initProc(request,response,nowPage,limitSta);
 		 
@@ -220,7 +222,7 @@ public class ListBL_customer extends HttpServlet {
 		
 		 rs = this.getList(SelectQuery, limitSta);
 		
-		 request.setAttribute("updflg", updFlg);
+		 request.setAttribute("updFlg", updFlg);
 		 request.setAttribute("listCnt", listCnt);
 		 request.setAttribute("Result", rs);
 		 request.setAttribute("nowPage", nowPage);

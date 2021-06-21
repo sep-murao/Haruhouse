@@ -1,10 +1,13 @@
 @charset "UTF-8";
 
-.send_mail{
-	position: center;
+th.send_mail{
+	padding-left:200px;
 }
 
-li{
-	display: inline-block;
+.Next{
+	margin-left:200px;
 }
 
+p{
+	color:red;
+}
