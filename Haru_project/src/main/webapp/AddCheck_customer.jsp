@@ -6,6 +6,7 @@
 <%
   String CUST_OWNER = null;
 
+  //AddBLから遷移されたデータを受け取る
   String CUST_KIND = (String)request.getAttribute("CUST_KIND");
   String CORP_NAME = (String)request.getAttribute("CORP_NAME");
   String CORP_NAME_KANA = (String)request.getAttribute("CORP_NAME_KANA");
@@ -67,7 +68,10 @@
    <tr><th>退去立会終了後にメール送信</th><td><%=MAIL_MESSAGE%></td></tr>
    <tr><th><input type="checkbox" name="CUST_OWNER" value=<%=CUST_OWNER%>>同じ内容をオーナー情報にも登録する</th></tr>
 </table>
+
 <p>この情報で登録します。よろしいですか？</p>
+
+<!--AddCommitBL_customerへデータを遷移-->
 <form action="AddCommitBL_customer" method="Post">
 <input type="hidden" name="CUST_KIND" value=<%=CUST_KIND %>>
 <input type="hidden" name="CORP_NAME" value=<%=CORP_NAME%>>
@@ -94,6 +98,7 @@
 <input type="submit" value="登録" style="width:150px" id="button">
 </form>
 
+<!--Add_customerへデータを遷移-->
 <form method="POST" action="Add_customer.jsp" >
 <input type="hidden" name="CUST_KIND" value=<%=CUST_KIND %>>
 <input type="hidden" name="CORP_NAME" value=<%=CORP_NAME%>>

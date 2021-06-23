@@ -4,32 +4,33 @@
 <%@page import= "kokyaku.Cmmon_customer"%>
 <%@page import="java.sql.ResultSet"%>
 
-<%   String CUST_KIND =null;
-     String CORP_NAME =null;
-     String CORP_NAME_KANA =null;
-     String CUST_DEPARTMENT_NAME =null;
-     String CUST_L_NAME =null;
-     String CUST_F_NAME =null;
-     String CUST_L_NAME_KANA =null;
-     String CUST_F_NAME_KANA =null;
-     String CUST_ZIP =null;
-     String CUST_PREFECTURE =null;
-     String CUST_ADDRESS1 =null;
-     String CUST_ADDRESS2 =null;
-     String CUST_TEL1 =null;
-     String CUST_TEL2 =null;
-     String CUST_TEL3 =null;
-     String CUST_MOBILE1 =null;
-     String CUST_MOBILE2 =null;
-     String CUST_MOBILE3 =null;
-     String CUST_MAIL =null;
-     String errmsg ="";
+<%   String CUST_KIND =null;              //個人・法人区分
+     String CORP_NAME =null;              //法人名
+     String CORP_NAME_KANA =null;         //法人名カナ
+     String CUST_DEPARTMENT_NAME =null;   //部署
+     String CUST_L_NAME =null;            //姓
+     String CUST_F_NAME =null;            //名
+     String CUST_L_NAME_KANA =null;       //姓カナ
+     String CUST_F_NAME_KANA =null;       //名カナ
+     String CUST_ZIP =null;               //郵便番号
+     String CUST_PREFECTURE =null;        //都道府県
+     String CUST_ADDRESS1 =null;          //住所
+     String CUST_ADDRESS2 =null;          //建物名
+     String CUST_TEL1 =null;              //市外局番
+     String CUST_TEL2 =null;              //市内局番
+     String CUST_TEL3 =null;              //電話番号
+     String CUST_MOBILE1 =null;           //携帯番号1
+     String CUST_MOBILE2 =null;           //携帯番号2
+     String CUST_MOBILE3 =null;           //携帯番号3
+     String CUST_MAIL =null;              //メールアドレス
+     String errmsg ="";                   //エラーメッセージ
      
-     ResultSet rs1 = Cmmon_customer.CUST_KINDAll();
-     ResultSet rs2 = Cmmon_customer.CUST_PREFECTURAll();
+     ResultSet rs1 = Cmmon_customer.CUST_KINDAll();        //個人・法人区分用プルダウン
+     ResultSet rs2 = Cmmon_customer.CUST_PREFECTURAll();   //都道府県用プルダウン
      
      if( (String)request.getAttribute("CUST_L_NAME")== null){
     	 
+    	 //新規登録ボタンから遷移
     	 if(request.getParameter("CUST_L_NAME")== null){
    
     	  CUST_KIND ="";
@@ -53,8 +54,7 @@
     	  CUST_MAIL ="";
     	  errmsg ="";
     	     
-    	 //新規登録の選択肢
-    	 
+    	 //確認画面から遷移
     	 }else{
     	   CUST_KIND = request.getParameter("CUST_KIND");
     	   CORP_NAME = request.getParameter("CORP_NAME");
@@ -76,8 +76,9 @@
     	   CUST_MOBILE3 = request.getParameter("CUST_MOBILE3");
     	   CUST_MAIL = request.getParameter("CUST_MAIL");
     	   errmsg ="";
-    	     	//確認画面から戻った時
     	 }
+    	 
+     //エラーが出た場合
      }else{
     	 CUST_KIND = (String)request.getAttribute("CUST_KIND");
     	 CORP_NAME = (String)request.getAttribute("CORP_NAME");
@@ -99,7 +100,6 @@
     	 CUST_MOBILE3 = (String)request.getAttribute("CUST_MOBILE3");
     	 CUST_MAIL = (String)request.getAttribute("CUST_MAIL");
     	 errmsg = (String)request.getAttribute("errmsg");
-     	//エラーが出た時
      }
      
      %>

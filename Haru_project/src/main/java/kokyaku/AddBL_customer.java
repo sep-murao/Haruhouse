@@ -46,6 +46,7 @@ public class AddBL_customer extends HttpServlet {
 		//doGet(request, response);
 		request.setCharacterEncoding("UTF-8");
 		
+		//Add_customerからデータ受け取り
 		String CUST_KIND = request.getParameter("CUST_KIND");
 		String CORP_NAME = request.getParameter("CORP_NAME");
 		String CORP_NAME_KANA = request.getParameter("CORP_NAME_KANA");
@@ -66,16 +67,16 @@ public class AddBL_customer extends HttpServlet {
 		String CUST_MOBILE3 = request.getParameter("CUST_MOBILE3");
 		String CUST_MAIL = request.getParameter("CUST_MAIL");
 		String[] CUST_MAIL_SEND_FLG = request.getParameterValues("CUST_MAIL_SEND_FLG");
-		//String CUST_MAIL_SEND_FLG = request.getParameter("CUST_MAIL_SEND_FLG");
 
     	String errmsg = Cmmon_customer.getError(CUST_KIND , CORP_NAME, CORP_NAME_KANA, CUST_DEPARTMENT_NAME, CUST_L_NAME, CUST_F_NAME,CUST_L_NAME_KANA, CUST_F_NAME_KANA, CUST_ZIP, CUST_PREFECTURE, CUST_ADDRESS1, CUST_ADDRESS2,
-    			                         CUST_TEL1, CUST_TEL2, CUST_TEL3, CUST_MOBILE1, CUST_MOBILE2, CUST_MOBILE3, CUST_MAIL);
-		String nextUrl = "/AddCheck_customer.jsp";
+    			                                  CUST_TEL1, CUST_TEL2, CUST_TEL3, CUST_MOBILE1, CUST_MOBILE2, CUST_MOBILE3, CUST_MAIL);
+		
+    	String nextUrl = "/AddCheck_customer.jsp";
     	
     	String CUST_TEL = CUST_TEL1 + "-" + CUST_TEL2 + "-" + CUST_TEL3;
     	String CUST_MOBILE = CUST_MOBILE1 + "-" + CUST_MOBILE2 + "-" + CUST_MOBILE3;
     	
-	
+	    //確認画面へ渡すデータ
     	request.setAttribute("CUST_KIND", CUST_KIND);
     	request.setAttribute("CORP_NAME", CORP_NAME);
     	request.setAttribute("CORP_NAME_KANA", CORP_NAME_KANA);
@@ -99,6 +100,7 @@ public class AddBL_customer extends HttpServlet {
     	request.setAttribute("CUST_MAIL", CUST_MAIL);
     	request.setAttribute("CUST_MAIL_SEND_FLG", CUST_MAIL_SEND_FLG);
 
+    	//エラーがある場合はエラーメッセージをAdd_customerに渡す
     	if(errmsg != "") {
     		request.setAttribute("errmsg",errmsg);
     		nextUrl = "/Add_customer.jsp";
